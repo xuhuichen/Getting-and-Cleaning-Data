@@ -39,6 +39,8 @@ totalsubject = rbind(trainsubject,testsubject)
 # combine the data set and the subject numbers and name the subject column
 totalset =cbind(totalset,totalsubject)
 names(totalset)[ncol(totalset)] = "subject"
+# write out the full data set
+write.table(totalset,"meanstddata.txt")
 
 ## Step 5. 
 # create the tidy data set
