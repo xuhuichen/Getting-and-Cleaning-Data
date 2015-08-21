@@ -6,6 +6,7 @@ if(!file.exists("accelerometers.zip")){
 # read in the two data sets and labels
 trainset <- read.table("UCI\ HAR\ Dataset/train/X_train.txt")
 testset <- read.table("UCI\ HAR\ Dataset/test/X_test.txt")
+features <- read.table("UCI\ HAR\ Dataset/features.txt")
 
 ## Step 1. 
 # combined the two data sets
@@ -17,14 +18,13 @@ meanstd <- sort(c(grep("std()",features[,2]),grep("mean()",features[,2])))
 totalset = totalset[,meanstd]
 
 ## Step 4.
-# read in the feature names, and name the variables according to the feature names
-features <- read.table("UCI\ HAR\ Dataset/features.txt")
+# Name the variables according to the feature names
 names(totalset) = as.character(features[meanstd,2])
 
 ## Step 3.
 # read in the labels
-#trainlabel <- read.table("UCI\ HAR\ Dataset/train/y_train.txt")
-#testlabel <- read.table("UCI\ HAR\ Dataset/test/y_test.txt")
+trainlabel <- read.table("UCI\ HAR\ Dataset/train/y_train.txt")
+testlabel <- read.table("UCI\ HAR\ Dataset/test/y_test.txt")
 totallabel <- rbind(trainlabel,testlabel)
 # read in the activity label names, and convert the activity numbers to readable labels
 activity_labels <- read.table("UCI\ HAR\ Dataset/activity_labels.txt")
@@ -44,11 +44,8 @@ write.table(totalset,"meanstddata.txt")
 
 ## Step 5. 
 # create the tidy data set
-activitysplit = split(totalset,totalset$activity)
-subjectsplit = split(totalset,totalset$subject)
-activitytable = sapply(activitysplit,function(x) sapply(x[1:(ncol(x)-2)],mean))
-subjecttable = sapply(subjectsplit,function(x) sapply(x[1:(ncol(x)-2)],mean))
-totaltable = t(cbind(activitytable,subjecttable))
+totaltable=aggregate(totalset[1:(ncol(totalset)-2)],
+          by=list(subject=totalset$subject,activity=totalset$activity),FUN=mean)
 
 # write out the tidy data set
 write.table(totaltable,"tidydata.txt",row.names=FALSE)

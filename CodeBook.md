@@ -1,13 +1,1 @@
-This is a description of the tidy data set "tidydata.txt" created from the "Human Activity Recognition Using Smartphones Dataset" (See http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones). The train and test data sets are combined. Only the mean and the standard deviation of each measurement is considered. This tidy data set includes the average of each variable for each activity and each subject. All features are normalized and bounded within [-1.1]. The first row of the data shows the variable names. The activity and subject (row) names are:
-[1] "LAYING"             "SITTING"            "STANDING"          
-[4] "WALKING"            "WALKING_DOWNSTAIRS" "WALKING_UPSTAIRS"  
-[7] "1"                  "2"                  "3"                 
-[10] "4"                  "5"                  "6"                 
-[13] "7"                  "8"                  "9"                 
-[16] "10"                 "11"                 "12"                
-[19] "13"                 "14"                 "15"                
-[22] "16"                 "17"                 "18"                
-[25] "19"                 "20"                 "21"                
-[28] "22"                 "23"                 "24"                
-[31] "25"                 "26"                 "27"                
-[34] "28"                 "29"                 "30"  
+This is a description of the tidy data set "tidydata.txt" created from the "Human Activity Recognition Using Smartphones Dataset" (See http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones). The train and test data sets are combined. Only the mean and the standard deviation of each measurement is considered. This tidy data set includes the average of each variable for each activity and each subject. The first row of the data shows the variable names. The first two columns identify the subject and activity. 
